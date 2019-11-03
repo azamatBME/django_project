@@ -29,6 +29,7 @@ urlpatterns = [
     path('user_type/', user_views.user_type, name='user_type'),
     path('user_type/student/', user_views.register_stud, name='student'),
     path('user_type/teacher/', user_views.register_teacher, name='teacher'),
+    path('teachers', user_views.public_teacher, name='public_teacher'),
     path('', include('to_do_list.urls')),
 ]
 

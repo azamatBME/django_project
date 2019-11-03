@@ -1,0 +1,17 @@
+{% extends "to_do_list/base.html" %}
+{% block content %}
+    {% for s in teacher %}
+      {% for p in teacher_a %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ s.first_name }}</a>
+              <small class="text-muted">{{ s.email }}</small>
+            </div>
+            <h2><a class="article-title" href="#">{{ p.subject }}</a></h2>
+            <p class="article-content">{{ p.title }}</p>
+          </div>
+        </article>
+       {% endfor %}
+    {% endfor %}
+{% endblock content %}

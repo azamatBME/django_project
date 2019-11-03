@@ -3,7 +3,8 @@ from django.contrib import messages
 from .forms_students import UserRegisterForm as stud_reg
 from .forms_teachers import UserRegisterForm as teacher_reg
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
+from .models import Teacher, Student, User
 
 
 def register_stud(request):
@@ -11,7 +12,7 @@ def register_stud(request):
         form = stud_reg(request.POST)
         if form.is_valid():
             form.save()
-            User == form.cleaned_data.get('User')
+            #User == get_user_model()
             messages.success(request, f'Your account has been created! You are now able to log in')
             return redirect('login')
     else:
@@ -24,7 +25,8 @@ def register_teacher(request):
         form = teacher_reg(request.POST)
         if form.is_valid():
             form.save()
-            User == form.cleaned_data.get('User')
+            #User == form.cleaned_data.get('User')
+            #User == get_user_model()
             messages.success(request, f'Your account has been created! You are now able to log in')
             return redirect('login')
     else:
@@ -40,6 +42,12 @@ def profile(request):
 def user_type(request):
     return render(request, 'users/user_type.html')
 
+
+def public_teacher(request):
+    teacher = User.objects.filter(is_teacher=1)
+    teacher_a = Teacher.objects.all()
+    context = {'teacher': teacher, 'teacher_a': teacher_a}
+    return render(request, 'users/public_teacher.html', context)
 
 
 
